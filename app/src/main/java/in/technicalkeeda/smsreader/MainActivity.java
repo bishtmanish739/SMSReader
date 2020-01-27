@@ -80,6 +80,12 @@ public class MainActivity extends AppCompatActivity {
         sms_num.clear();
         sms_body.clear();
         if (ContextCompat.checkSelfPermission(getBaseContext(), "android.permission.READ_SMS") == PackageManager.PERMISSION_GRANTED) {
+        }
+        else{
+            final int REQUEST_CODE_ASK_PERMISSIONS = 123;
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{"android.permission.READ_SMS"}, REQUEST_CODE_ASK_PERMISSIONS);
+        }
+        if (ContextCompat.checkSelfPermission(getBaseContext(), "android.permission.READ_SMS") == PackageManager.PERMISSION_GRANTED) {
 
             Uri myMessage = Uri.parse("content://sms/");
 
@@ -100,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             String s=sms_body.get(0);
           // int i= s.indexOf("Hi");
 
-            Toast.makeText(con, s+i, Toast.LENGTH_SHORT).show();
+            Toast.makeText(con, s, Toast.LENGTH_SHORT).show();
 
 
         }
